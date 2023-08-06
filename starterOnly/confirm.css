@@ -1,0 +1,84 @@
+
+
+/* Background = formulaire à remplir */
+.bground {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
+  }
+  
+  /* Début modal remerciement  */
+  .bgroundConfirmation {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
+  }
+  
+  .bgroundConfirmation > .content {
+    display: flex;
+    justify-content: center;
+    padding: 0%;
+    height: 100%;
+  }
+  
+  .bgroundConfirmation > .content .btn-submit {
+    position: absolute;
+    bottom: 10%;
+    display: flex;
+    left: 28%;
+  }
+  
+  .bgroundConfirmation > .content p {
+    display: flex;
+    padding-top: 100%;
+  }
+  
+  /* Fin modal remerciement */
+  
+  @media screen and (max-width: 992px) {
+    
+  
+    /*Début modal remerciement*/
+  
+    .bgroundConfirmation > .content .btn-submit {
+      display: flex;
+      position: absolute;
+      bottom: 10%;
+      padding-left: 15%;
+      padding-right: 15%;
+      text-align: center;
+    }
+    /*Fin modal remerciement*/
+  }
+  
+  /* Version mobile */
+  @media screen and (max-width: 540px) {
+    /*Début modal remerciement*/
+  
+    .bgroundConfirmation > .content p {
+      font-size: 19px;
+    }
+    .bgroundConfirmation > .content .btn-submit {
+      display: flex;
+      position: absolute;
+      bottom: 10%;
+      padding-left: 15%;
+      padding-right: 15%;
+      text-align: center;
+    }
+    /*Fin modal remerciement*/
+  
+  }
+  

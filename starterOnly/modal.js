@@ -22,7 +22,15 @@ function launchModal() {
 
 
 // (1) Lier les labels aux entrées dans le HTML en utilisant les attributs "for" et "id" dans le code existant. Corrigez le code HTML si nécessaire.
+
+// FAITS 
+
 // (2) Utiliser JavaScript pur (pas de jQuery) pour terminer le formulaire :
+
+
+
+
+
 
 // Le formulaire doit être valide quand l'utilisateur clique sur "Soumettre"
 // Les données doivent être saisies correctement :
