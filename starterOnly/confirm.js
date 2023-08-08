@@ -217,7 +217,7 @@ function birthdateConfirm() {
         myErrorLocation.style.color = "red";
         return false;
       }
-// (6) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
+// (7) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
 
 
 
