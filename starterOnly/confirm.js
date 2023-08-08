@@ -41,7 +41,30 @@ const Errors = {
   let myForm = document.getElementById("myForm");
   myForm.addEventListener("submit", function (e) {
     e.preventDefault(); // Empêche le rechargement de la page par défaut
-  });
+    if (formConfirm()) {
+        closeModal();
+        launchConfirmation();
+      }
+    });
+    
+    // Fonction pour valider le formulaire
+    function formConfirm() {
+       firstConfirm();
+       lastConfirm();
+        emailConfirm();
+       birthdateConfirm();
+       quantityConfirm();
+       locationConfirm();
+    
+      return (
+        firstConfirm() &&
+        lastConfirm() &&
+        emailConfirm() &&
+        birthdateConfirm() &&
+        quantityConfirm() &&
+        locationConfirm()
+      );
+    }
 
   // Les données doivent être saisies correctement :
   
@@ -105,9 +128,108 @@ function firstConfirm() {
     }
     
     // (3) L'adresse électronique est valide.
+// ############################ Email ######################  
 
+  // (3) Validation du champ "Adresse électronique" (email)
+  function emailConfirm() {
+    let email = document.getElementById("email");
+    let myErrorEmail = document.getElementById("errorEmail");
+    // si la valeur saisie ne correspond pas aux conditions du regex:
+    if (!emailRegex.test(email.value)) {
+      // - on affiche un message d'erreur et le cadre du champs devient rouge
+      myErrorEmail.innerHTML = Errors.emailError;
+      myErrorEmail.style.color = "red";
+      email.style.border = "1px solid red";
+      return false;
+    } else {
+      // sinon laisse le blanc
+      myErrorEmail.innerHTML = "";
+      email.style.border = "1px solid white";
+      return true;
+    }
+  }
 
-// (4) Pour le nombre de concours, une valeur numérique est saisie.
-// (5) Un bouton radio est sélectionné.
+  // ############################ birthdate ######################  
+
+ // (4) Validation du champ "Date de naissance" (birthdate)
+function birthdateConfirm() {
+  const birthdate = document.getElementById("birthdate");
+  const myErrorBirthDate = document.getElementById('errorBirthdate');
+  const vari = new Date(birthdate.value);
+  // La getFullYear()méthode des Dateinstances renvoie l'année pour cette date en fonction de l'heure locale.
+  const currentYear = new Date().getFullYear(); 
+
+  if (!birthdateRegex.test(birthdate.value)) {
+     // - on affiche un message d'erreur et le cadre du champs devient rouge
+    myErrorBirthDate.innerHTML = Errors.birthdateError;
+    myErrorBirthDate.style.color = "red";
+    birthdate.style.border = '1px solid red';
+    return false;
+  } else if (currentYear - vari.getFullYear() < 16) {
+     // - on affiche un message d'erreur et le cadre du champs devient rouge
+    myErrorBirthDate.innerHTML = Errors.birthdateError2;
+    myErrorBirthDate.style.color = "red";
+    birthdate.style.border = '1px solid red';
+    return false;
+  } else {
+    myErrorBirthDate.innerHTML = "";
+    birthdate.style.border = '1px solid white';
+    return true;
+  }
+}
+  
+// (5) Pour le nombre de concours, une valeur numérique est saisie.
+  // ############################ Quantity ######################  
+
+    // (5) Validation du champ "Nombre de concours" (quantity)
+    function quantityConfirm() {
+        let quantity = document.getElementById("quantity");
+        let myErrorQuantity = document.getElementById("errorQuantity");
+        
+        if (!quantityRegex.test(quantity.value)) {
+          // - on affiche un message d'erreur et le cadre du champs devient rouge
+          myErrorQuantity.innerHTML = Errors.quantityError;
+          myErrorQuantity.style.color = "red";
+          quantity.style.border = "1px solid red";
+          return false;
+        } else {
+          myErrorQuantity.innerHTML = "";
+          quantity.style.border = "1px solid white";
+          return true;
+        }
+      }
+// (6) Un bouton radio ville est à sélectionné.
+ // ############################ Ville ######################  
+    
+    //  Une ville est sélectionnée.
+    function locationConfirm() {
+        const locations = document.getElementsByName("locations");
+        for (let i = 0; i < locations.length; i++) {
+          if (locations[i].checked) {
+            let myErrorLocation = document.getElementById('errorLocation');
+            myErrorLocation.innerHTML = "";
+            return true;
+          }
+        }
+      let myErrorLocation = document.getElementById('errorLocation');
+        // - on affiche un message d'erreur et le cadre du champs devient rouge
+        myErrorLocation.innerHTML = Errors.locationError;
+        myErrorLocation.style.color = "red";
+        return false;
+      }
 // (6) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
+
+
+
+   // ############################ Modal de remerciment ######################  
+  
+  // Fonction pour afficher la confirmation du formulaire
+  function launchConfirmation() {
+    formConfirmation.style.display = "block";
+  }
+  
+  // Fonction pour masquer la confirmation du formulaire
+  function closeConfirmation() {
+    formConfirmation.style.display = "none";
+  }
 // Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il ne passe pas la validation.
